@@ -1,5 +1,6 @@
 package com.andrei.template.activities;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,10 +17,14 @@ import com.andrei.template.R;
 import com.andrei.template.data.models.Note;
 import com.andrei.template.data.models.Note_;
 import com.andrei.template.utils.DialogFactory;
+import com.andrei.template.utils.HttpRequester;
 import com.socks.library.KLog;
 import io.objectbox.Box;
 import io.objectbox.BoxStore;
 import io.objectbox.query.Query;
+import android.util.Log;
+
+import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -37,7 +42,7 @@ public class MainActivity extends BaseActivity {
   private Box<Note> notesBox;
   private Query<Note> notesQuery;
   private BoxStore boxStore;
-
+  private HttpRequester httpRequester;
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
@@ -52,6 +57,11 @@ public class MainActivity extends BaseActivity {
     notesBox = boxStore.boxFor(Note.class);
     addNote();
     listNotes();
+    httpRequester= new HttpRequester();
+
+    Log.w("SSSSSs","fuck");
+    httpRequester.execute("createAccount");
+
 
 
   }
