@@ -2,6 +2,10 @@ package com.andrei.template.utils;
 
 /**
  * Created by steevehuang on 5/11/2017.
+ * This class is for calling the ASTRI API.
+ * To Utilize this class, simply call execute(String ...) on a HttpRequester object.
+ * The first parameter should specify the function, that is. createAccount, updateAccount, or removeAccount.
+ * The remaining parameters should input all or part of the user information as shown below.
  */
 
 import com.andrei.template.utils.GetUtility;
@@ -10,6 +14,8 @@ import com.andrei.template.utils.PutUtility;
 import java.io.*;
 import android.os.AsyncTask;
 import android.util.Log;
+
+
 
 public class HttpRequester extends AsyncTask<String, Void, Void> {
     private static String domain = "10.89.142.30:10007";
