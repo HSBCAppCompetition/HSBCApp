@@ -39,7 +39,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-                    android:drawableLeft="@android:drawable/ic_contact_picture"
+
                     android:hint="@string/field_name" />
             </android.support.design.widget.TextInputLayout>
 
@@ -82,7 +82,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPostalAddress"
-                    android:drawableLeft="@android:drawable/ic_menu_home"
+                    
                     android:hint="@string/field_address"/>
             </android.support.design.widget.TextInputLayout>
 
