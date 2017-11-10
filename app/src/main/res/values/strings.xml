@@ -6,4 +6,10 @@
     <string name="field_email">Email</string>
     <string name="field_phone">Phone</string>
     <string name="field_address">Address</string>
+    <string name="on_number_change">We have detected a change in your phone number.</string>
+    <string name="notification_title">HSBC Safeguard</string>
+    <string name="channel_name">Nice</string>
+    <string name="channel_description">haha</string>
+    <string name="dismiss">dismiss</string>
+    <string name="agree">agree</string>
 </resources>
