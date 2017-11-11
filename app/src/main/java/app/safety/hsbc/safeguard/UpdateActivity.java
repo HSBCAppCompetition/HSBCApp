@@ -56,11 +56,13 @@ public class UpdateActivity extends AppCompatActivity implements  BottomNavigati
     public void cancelOnClick(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public void updateOnClick(View view) {
         Intent intent = new Intent(this, InfoActivity.class);
         intent.putExtra("phone_number",phoneNumber.getText().toString());
         startActivity(intent);
+        finish();
     }
 }
