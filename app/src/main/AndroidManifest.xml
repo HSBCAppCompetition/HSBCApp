@@ -39,6 +39,11 @@
             android:windowSoftInputMode="adjustPan">
 
         </activity>
+        <activity android:name=".UpdateActivity"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+
         <receiver android:name=".SimChangedReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.SIM_STATE_CHANGED"/>

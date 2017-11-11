@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity implements  BottomNavigationView.OnNavigationItemSelectedListener{
 
@@ -122,4 +123,7 @@ public class MainActivity extends AppCompatActivity implements  BottomNavigation
         Intent serviceIntent = new Intent(this, NotificationAlarmService.class);
         startService(serviceIntent);
     }
+
+
+
 }

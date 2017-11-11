@@ -13,22 +13,43 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class InfoActivity extends AppCompatActivity implements  BottomNavigationView.OnNavigationItemSelectedListener {
 
 //    private TextView mTextMessage;
     protected BottomNavigationView navigation;
-
-
+    EditText phoneNumberEdit;
+    private static String phoneNumber;
+    private static boolean phoneNumberSet = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+        phoneNumberEdit = (EditText) findViewById(R.id.input_phone);
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
         navigation.getMenu().findItem(R.id.navigation_info).setChecked(true);
 
+
+
+        // get phone number
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                if (!phoneNumberSet)phoneNumber= "12345678";
+
+            } else {
+                phoneNumber= extras.getString("phone_number");
+                phoneNumberSet= true;
+            }
+        } else {
+            phoneNumber= (String) savedInstanceState.getSerializable("phone_number");
+            phoneNumberSet=true;
+        }
+        Log.e("w",phoneNumber);
+        phoneNumberEdit.setText(phoneNumber);
         /***
          * The below code push a notification
          */
