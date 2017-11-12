@@ -1,6 +1,5 @@
 ![HSBC](http://www.freelogovectors.net/wp-content/uploads/2012/03/hsbc-logo.jpg)
 # USTER -- HSBC Safeguard App Competition
----
 #### This demo shows how users can update their phone number onto HSBC's ledger automatically when they change their SIM cards.
 ## Basic Requirement
 #### Android phone API level > 15 
