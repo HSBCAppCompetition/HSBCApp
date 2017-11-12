@@ -11,28 +11,64 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 
 public class InfoActivity extends AppCompatActivity implements  BottomNavigationView.OnNavigationItemSelectedListener {
 
 //    private TextView mTextMessage;
     protected BottomNavigationView navigation;
+    Switch editSwitch;
     EditText phoneNumberEdit;
+    EditText nameEdit;
+    EditText emailEdit;
+    EditText addressEdit;
+//    AppCompatButton updateBtn;
     private static String phoneNumber;
     private static boolean phoneNumberSet = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
-        phoneNumberEdit = (EditText) findViewById(R.id.input_phone);
+        phoneNumberEdit = findViewById(R.id.input_phone);
+        nameEdit = findViewById(R.id.input_name);
+        emailEdit = findViewById(R.id.input_email);
+        addressEdit = findViewById(R.id.input_address);
+//        updateBtn = findViewById(R.id.btn_update);
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
         navigation.getMenu().findItem(R.id.navigation_info).setChecked(true);
 
-
+        editSwitch = (Switch) findViewById(R.id.switch_edit);
+        editSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(CompoundButton cb, boolean on){
+                if(on)
+                {
+                    //Do something when Switch button is on/checked
+//                    updateBtn.setVisibility(View.VISIBLE);
+                    nameEdit.setEnabled(true);
+                    phoneNumberEdit.setEnabled(true);
+                    emailEdit.setEnabled(true);
+                    addressEdit.setEnabled(true);
+                }
+                else
+                {
+                    //Do something when Switch is off/unchecked
+//                    updateBtn.setVisibility(View.GONE);
+                    nameEdit.setEnabled(false);
+                    phoneNumberEdit.setEnabled(false);
+                    emailEdit.setEnabled(false);
+                    addressEdit.setEnabled(false);
+                }
+            }
+        });
 
         // get phone number
         if (savedInstanceState == null) {
@@ -91,7 +127,7 @@ public class InfoActivity extends AppCompatActivity implements  BottomNavigation
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // switch between activities
-        navigation.postDelayed(() -> {
+//        navigation.postDelayed(() -> {
             int itemId = item.getItemId();
             if (itemId == R.id.navigation_home) {
                 startActivity(new Intent(this, MainActivity.class));
@@ -100,7 +136,8 @@ public class InfoActivity extends AppCompatActivity implements  BottomNavigation
                 startActivity(new Intent(this, InfoActivity.class));
             }
             finish();
-        }, 300);
+//        }, 300);
         return true;
     }
+
 }

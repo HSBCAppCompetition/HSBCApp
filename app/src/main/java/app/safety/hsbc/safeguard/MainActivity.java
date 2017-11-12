@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements  BottomNavigation
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // switch between activities
-        navigation.postDelayed(() -> {
+//        navigation.postDelayed(() -> {
             int itemId = item.getItemId();
             if (itemId == R.id.navigation_home) {
                 startActivity(new Intent(this, MainActivity.class));
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements  BottomNavigation
             }
             finish();
 
-        }, 300);
+//        }, 300);
 
         return true;
     }

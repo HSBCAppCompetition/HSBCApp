@@ -11,7 +11,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="false">
 
         <LinearLayout
             android:orientation="vertical"
@@ -30,6 +30,15 @@
             -->
 
             <!--  Name Label -->
+            <Switch
+                android:id="@+id/switch_edit"
+                android:showText="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textOff="Edit"
+                android:textOn="Save"
+                android:switchPadding="10px"/>
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -39,10 +48,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-
+                    android:drawableLeft="@android:drawable/ic_menu_gallery"
                     android:hint="@string/field_name"
                     android:text="CHAN Tai Man"
-                    android:enabled="true"/>
+                    android:enabled="false"/>
             </android.support.design.widget.TextInputLayout>
 
             <!-- Email Label -->
@@ -58,7 +67,7 @@
                     android:drawableLeft="@android:drawable/ic_menu_send"
                     android:hint="@string/field_email"
                     android:text="taimanchan@gmail.com"
-                    android:enabled="true"/>
+                    android:enabled="false"/>
             </android.support.design.widget.TextInputLayout>
 
             <!-- Phone Label -->
@@ -75,7 +84,7 @@
                     android:drawableLeft="@android:drawable/ic_menu_call"
                     android:hint="@string/field_phone"
                     android:text="(+852)65805588"
-                    android:enabled="true"/>
+                    android:enabled="false"/>
             </android.support.design.widget.TextInputLayout>
 
             <!-- Phone Label -->
@@ -88,11 +97,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPostalAddress"
-
+                    android:drawableLeft="@android:drawable/ic_menu_mylocation"
                     android:text="Room 530L, UG Hall IV, HKUST"
                     android:hint="@string/field_address"
-                    android:enabled="true"/>
+                    android:enabled="false"/>
             </android.support.design.widget.TextInputLayout>
+
+            <!--<android.support.v7.widget.AppCompatButton-->
+                <!--android:id="@+id/btn_update"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="8dp"-->
+                <!--android:layout_marginTop="24dp"-->
+                <!--android:padding="12dp"-->
+                <!--android:text="Update"-->
+                <!--android:visibility="gone"/>-->
 
         </LinearLayout>
     </ScrollView>
