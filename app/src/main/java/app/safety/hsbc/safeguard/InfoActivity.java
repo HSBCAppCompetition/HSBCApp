@@ -70,6 +70,7 @@ public class InfoActivity extends AppCompatActivity implements  BottomNavigation
                     phoneNumberEdit.setEnabled(false);
                     emailEdit.setEnabled(false);
                     addressEdit.setEnabled(false);
+                    httpRequester= new HttpRequester();
                     httpRequester.execute("updateAccount", "2",nameEdit.getText().toString(), phoneNumberEdit.getText().toString(), emailEdit.getText().toString(), addressEdit.getText().toString(),
                             addressEdit.getText().toString(), "student");
                 }
@@ -85,7 +86,7 @@ public class InfoActivity extends AppCompatActivity implements  BottomNavigation
             } else {
                 phoneNumber= extras.getString("phone_number");
 
-
+                httpRequester= new HttpRequester();
                 httpRequester.execute("updateAccount", "2","CHAN Tai Man", phoneNumber, "taimanchan@gmail.com", "Room 530L, UG Hall IV, HKUST",
                         "Room 530L, UG Hall IV, HKUST","student");
                 phoneNumberSet= true;
