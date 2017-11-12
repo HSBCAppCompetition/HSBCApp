@@ -57,6 +57,11 @@ public class NotificationAlarmService extends Service {
                 // The user-visible description of the channel.
                 String description = getString(R.string.channel_description);
                 int importance = NotificationManager.IMPORTANCE_HIGH;
+
+
+                /**
+                 * These cannot be used in lower API level phone.
+                 *
                 NotificationChannel mChannel = new NotificationChannel(id, name,importance);
 
                 // Configure the notification channel.
@@ -69,7 +74,10 @@ public class NotificationAlarmService extends Service {
                 mChannel.enableVibration(true);
                 mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
                 mNotificationManager.createNotificationChannel(mChannel);
+
+
                 mNotificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+                 **/
                 // Sets an ID for the notification, so it can be updated.
 
                 int notifyID = 1;
@@ -98,7 +106,7 @@ public class NotificationAlarmService extends Service {
                         .setColor(getResources().getColor(R.color.colorPrimary))
                         .setSmallIcon(R.drawable.ic_local_phone_black_24dp)
                         .setPriority(Notification.PRIORITY_HIGH)
-                        .setChannelId(CHANNEL_ID)
+//                        .setChannelId(CHANNEL_ID)
                         .setDefaults(Notification.DEFAULT_ALL)
                         .addAction(R.drawable.ic_dashboard_black_24dp,
                                 getString(R.string.dismiss), pendingCancelIntent)
