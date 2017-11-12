@@ -20,8 +20,14 @@ public class SimChangedReceiver extends BroadcastReceiver{
         // events where the intent's extras contains a key "ss" with value "LOADED".
         // But it is more secure to just always check if there was a change.
         Intent service = new Intent(context, NotificationAlarmService.class);
+
+//        Log.e("w","simchange!!!"+intent.getExtras().getString("ss"));
+        if (intent.getExtras().getString("ss").equals("LOADED") ){
+            Log.e("w","simcardnotify");
+            context.startService(service);
+        }
 //        service.putExtra("notifId", intent.getIntExtra("notifId", 0));
-        Log.e("w","publisher");
-        context.startService(service);
+//        Log.e("w","publisher");
+
     }
 }

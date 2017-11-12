@@ -36,89 +36,89 @@ public class NotificationAlarmService extends Service {
         Intent mIntent = new Intent(this, MainActivity.class);
         pendingIntent = PendingIntent.getActivity(this, intent.getIntExtra("notifId", 0), mIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
+        /***
+         * The below code push a notification
+         */
+        mNotificationManager  = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        // The id of the channel.
+        String id = "my_channel_01";
+
+        // The user-visible name of the channel.
+        CharSequence name = getString(R.string.channel_name);
+
+        // The user-visible description of the channel.
+        String description = getString(R.string.channel_description);
+        int importance = NotificationManager.IMPORTANCE_HIGH;
 
 
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
+        /**
+         * These cannot be used in lower API level phone.
+         *
+         NotificationChannel mChannel = new NotificationChannel(id, name,importance);
 
-            @Override
-            public void run() {
-                /***
-                 * The below code push a notification
-                 */
-                mNotificationManager  = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+         // Configure the notification channel.
+         mChannel.setDescription(description);
+         mChannel.enableLights(true);
 
-                // The id of the channel.
-                String id = "my_channel_01";
-
-                // The user-visible name of the channel.
-                CharSequence name = getString(R.string.channel_name);
-
-                // The user-visible description of the channel.
-                String description = getString(R.string.channel_description);
-                int importance = NotificationManager.IMPORTANCE_HIGH;
+         // Sets the notification light color for notifications posted to this
+         // channel, if the device supports this feature.
+         mChannel.setLightColor(R.color.colorPrimary);
+         mChannel.enableVibration(true);
+         mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+         mNotificationManager.createNotificationChannel(mChannel);
 
 
-                /**
-                 * These cannot be used in lower API level phone.
-                 *
-                NotificationChannel mChannel = new NotificationChannel(id, name,importance);
+         mNotificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+         **/
+        // Sets an ID for the notification, so it can be updated.
 
-                // Configure the notification channel.
-                mChannel.setDescription(description);
-                mChannel.enableLights(true);
+        int notifyID = 1;
+        // The id of the channel.
+        String CHANNEL_ID = "my_channel_01";
 
-                // Sets the notification light color for notifications posted to this
-                // channel, if the device supports this feature.
-                mChannel.setLightColor(R.color.colorPrimary);
-                mChannel.enableVibration(true);
-                mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
-                mNotificationManager.createNotificationChannel(mChannel);
-
-
-                mNotificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-                 **/
-                // Sets an ID for the notification, so it can be updated.
-
-                int notifyID = 1;
-                // The id of the channel.
-                String CHANNEL_ID = "my_channel_01";
-
-                // cancel intent
-                Intent cancelIntent = new Intent(NotificationAlarmService.this,CancelNotification.class);
-                Bundle extras = new Bundle();
-                extras.putInt("notification_id", NotificationAlarmService.notificationId);
+        // cancel intent
+        Intent cancelIntent = new Intent(NotificationAlarmService.this,CancelNotification.class);
+        Bundle extras = new Bundle();
+        extras.putInt("notification_id", NotificationAlarmService.notificationId);
 //                cancelIntent.putExtras(extras);
-                PendingIntent pendingCancelIntent = PendingIntent.getBroadcast(getApplicationContext(), NotificationAlarmService.notificationId, cancelIntent, PendingIntent.FLAG_CANCEL_CURRENT) ;
+        PendingIntent pendingCancelIntent = PendingIntent.getBroadcast(getApplicationContext(), NotificationAlarmService.notificationId, cancelIntent, PendingIntent.FLAG_CANCEL_CURRENT) ;
 
-                // go to update activity
-                Intent updateIntent = new Intent(getApplicationContext(), UpdateActivity.class);
-                updateIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-                        | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                PendingIntent updatePendingIntent = PendingIntent.getActivity(NotificationAlarmService.this,
-                        0, updateIntent,
-                        0);
+        // go to update activity
+        Intent updateIntent = new Intent(getApplicationContext(), UpdateActivity.class);
+        updateIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        PendingIntent updatePendingIntent = PendingIntent.getActivity(NotificationAlarmService.this,
+                0, updateIntent,
+                0);
 
-                // Create a notification and set the notification channel.
-                Notification notification = new Notification.Builder(getApplicationContext())
-                        .setContentTitle(getString(R.string.notification_title))
-                        .setContentText(getString(R.string.on_number_change))
-                        .setColor(getResources().getColor(R.color.colorPrimary))
-                        .setSmallIcon(R.drawable.ic_local_phone_black_24dp)
-                        .setPriority(Notification.PRIORITY_HIGH)
+        // Create a notification and set the notification channel.
+        Notification notification = new Notification.Builder(getApplicationContext())
+                .setContentTitle(getString(R.string.notification_title))
+                .setContentText(getString(R.string.on_number_change))
+                .setColor(getResources().getColor(R.color.colorPrimary))
+                .setSmallIcon(R.drawable.ic_local_phone_black_24dp)
+                .setPriority(Notification.PRIORITY_HIGH)
 //                        .setChannelId(CHANNEL_ID)
-                        .setDefaults(Notification.DEFAULT_ALL)
-                        .addAction(R.drawable.ic_dashboard_black_24dp,
-                                getString(R.string.dismiss), pendingCancelIntent)
-                        .addAction(R.drawable.ic_local_phone_black_24dp,
-                                getString(R.string.agree), updatePendingIntent)
-                        .build();
+                .setDefaults(Notification.DEFAULT_ALL)
+                .addAction(R.drawable.ic_clear_black_24dp,
+                        getString(R.string.dismiss), pendingCancelIntent)
+                .addAction(R.drawable.ic_done_black_24dp,
+                        getString(R.string.agree), updatePendingIntent)
+                .build();
 
-                // Issue the notification.
-                mNotificationManager.notify(NotificationAlarmService.notificationId, notification);
-                Log.e("w","Notifyinggg");
-            }
-        }, 1000* 5);
+        // Issue the notification.
+        mNotificationManager.notify(NotificationAlarmService.notificationId, notification);
+        Log.e("w","Notifyinggg");
+
+//        Handler handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//
+//            @Override
+//            public void run() {
+//
+//            }
+//        }, 1000* 10);
         return super.onStartCommand(intent, flag, startId);
     }
 

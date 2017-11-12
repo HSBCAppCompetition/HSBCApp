@@ -35,8 +35,8 @@
                 android:showText="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textOff="Edit"
-                android:textOn="Save"
+                android:textOff=""
+                android:textOn=""
                 android:switchPadding="10px"/>
 
             <android.support.design.widget.TextInputLayout

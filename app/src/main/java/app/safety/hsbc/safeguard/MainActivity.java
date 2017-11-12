@@ -120,8 +120,8 @@ public class MainActivity extends AppCompatActivity implements  BottomNavigation
         /**
          * This notify the service directly
          */
-        Intent serviceIntent = new Intent(this, NotificationAlarmService.class);
-        startService(serviceIntent);
+//        Intent serviceIntent = new Intent(this, NotificationAlarmService.class);
+//        startService(serviceIntent);
     }
 
 
