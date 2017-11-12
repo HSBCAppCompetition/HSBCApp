@@ -23,6 +23,7 @@ public class HttpRequester extends AsyncTask<String, Void, Void> {
     public void createAccount(String id, String name, String phoneNumber, String email,
                                       String residentialAddress, String correspondenceAddress, String job)
             throws IOException {
+        Log.e("w","in create function");
         PutUtility put = new PutUtility("http://" + domain + "/api/account/createAccount");
         String requestBody = "{"
                 + "\"id\" : \"" + id + "\", "
@@ -40,10 +41,12 @@ public class HttpRequester extends AsyncTask<String, Void, Void> {
         System.out.println(put.getResponse());
     }
 
-    private void updateAccount(String id, String name, String phoneNumber, String email,
+    public void updateAccount(String id, String name, String phoneNumber, String email,
                                       String residentialAddress, String correspondenceAddress, String job)
             throws IOException {
+        Log.e("w","in update function");
         PutUtility put = new PutUtility("http://" + domain + "/api/account/updateAccount");
+        Log.e("w","in update function dddd");
         String requestBody = "{"
                 + "\"id\" : \"" + id + "\"";
         if (!nullOrEmpty(name)) {
@@ -93,20 +96,23 @@ public class HttpRequester extends AsyncTask<String, Void, Void> {
 
     @Override
     protected Void doInBackground(String... strings) {
+        Log.e("w","executing");
         try {
 
             switch( strings[0]){
                 case "createAccount":
-                    Log.w("wow","the fuck?");
+
                     createAccount(strings[1], strings[2],strings[3],strings[4],
                             strings[5],strings[6],strings[7]);
                     break;
-                case "updaetAccount":
+                case "updateAccount":
+                    Log.e("w","updating");
                     updateAccount(strings[1], strings[2],strings[3],strings[4],
                             strings[5],strings[6],strings[7]);
+                    Log.e("w","LOL");
                     break;
                 case "removeAccount":
-                    removeAccount("2");
+                    removeAccount(strings[1]);
                     break;
 
 
@@ -117,7 +123,7 @@ public class HttpRequester extends AsyncTask<String, Void, Void> {
 
         } catch (Exception e) {
             this.exception = e;
-
+            Log.e("w", "catch!!!! " +  e.toString());
         }
         return null;
     }

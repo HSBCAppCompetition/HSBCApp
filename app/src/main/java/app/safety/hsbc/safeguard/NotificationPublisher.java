@@ -20,6 +20,6 @@ public class NotificationPublisher extends BroadcastReceiver {
         Intent service = new Intent(context, NotificationAlarmService.class);
 //        service.putExtra("notifId", intent.getIntExtra("notifId", 0));
         Log.e("w","publisher");
-        context.startService(service);
+//        context.startService(service);
     }
 }

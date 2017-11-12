@@ -20,6 +20,8 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import app.safety.hsbc.safeguard.utils.HttpRequester;
+
 public class InfoActivity extends AppCompatActivity implements  BottomNavigationView.OnNavigationItemSelectedListener {
 
 //    private TextView mTextMessage;
@@ -29,6 +31,7 @@ public class InfoActivity extends AppCompatActivity implements  BottomNavigation
     EditText nameEdit;
     EditText emailEdit;
     EditText addressEdit;
+    HttpRequester httpRequester;
 //    AppCompatButton updateBtn;
     private static String phoneNumber;
     private static boolean phoneNumberSet = false;
@@ -36,6 +39,7 @@ public class InfoActivity extends AppCompatActivity implements  BottomNavigation
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+        httpRequester= new HttpRequester();
         phoneNumberEdit = findViewById(R.id.input_phone);
         nameEdit = findViewById(R.id.input_name);
         emailEdit = findViewById(R.id.input_email);
@@ -66,6 +70,8 @@ public class InfoActivity extends AppCompatActivity implements  BottomNavigation
                     phoneNumberEdit.setEnabled(false);
                     emailEdit.setEnabled(false);
                     addressEdit.setEnabled(false);
+                    httpRequester.execute("updateAccount", "2",nameEdit.getText().toString(), phoneNumberEdit.getText().toString(), emailEdit.getText().toString(), addressEdit.getText().toString(),
+                            addressEdit.getText().toString(), "student");
                 }
             }
         });
@@ -78,11 +84,18 @@ public class InfoActivity extends AppCompatActivity implements  BottomNavigation
 
             } else {
                 phoneNumber= extras.getString("phone_number");
+
+
+                httpRequester.execute("updateAccount", "2","CHAN Tai Man", phoneNumber, "taimanchan@gmail.com", "Room 530L, UG Hall IV, HKUST",
+                        "Room 530L, UG Hall IV, HKUST","student");
                 phoneNumberSet= true;
             }
         } else {
             phoneNumber= (String) savedInstanceState.getSerializable("phone_number");
             phoneNumberSet=true;
+
+            httpRequester.execute("updateAccount", "2","CHAN Tai Man", phoneNumber,"taimanchan@gmail.com", "Room 530L, UG Hall IV, HKUST",
+                    "Room 530L, UG Hall IV, HKUST","student");
         }
         Log.e("w",phoneNumber);
         phoneNumberEdit.setText(phoneNumber);

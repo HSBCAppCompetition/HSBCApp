@@ -34,7 +34,7 @@ public class NotificationAlarmService extends Service {
     public int onStartCommand(Intent intent, int flag, int startId) {
         notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
         Intent mIntent = new Intent(this, MainActivity.class);
-        pendingIntent = PendingIntent.getActivity(this, intent.getIntExtra("notifId", 0), mIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+//        pendingIntent = PendingIntent.getActivity(this, intent.getIntExtra("notifId", 0), mIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         /***
          * The below code push a notification

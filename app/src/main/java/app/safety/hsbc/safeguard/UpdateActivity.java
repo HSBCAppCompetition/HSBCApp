@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import app.safety.hsbc.safeguard.utils.HttpRequester;
+
 public class UpdateActivity extends AppCompatActivity implements  BottomNavigationView.OnNavigationItemSelectedListener {
 
     //    private TextView mTextMessage;
@@ -60,6 +62,7 @@ public class UpdateActivity extends AppCompatActivity implements  BottomNavigati
     }
 
     public void updateOnClick(View view) {
+
         Intent intent = new Intent(this, InfoActivity.class);
         intent.putExtra("phone_number",phoneNumber.getText().toString());
         startActivity(intent);
